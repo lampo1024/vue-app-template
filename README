@@ -1,0 +1,9 @@
+##Vue SPA Application Template##
+A Vue.js SPA application template. Powered by Vue 2.0 + Element Desktop UI
+
+###Install:###
+git clone https://github.com/lampo1024/vue-app-template.git
+
+And use the following command to restore packages:
+npm install
+
