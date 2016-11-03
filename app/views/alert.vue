@@ -7,6 +7,9 @@
 		<el-button type="primary" @click.native="openFullScreen" v-loading.fullscreen.lock="fullscreenLoading">
 			显示整页加载，3 秒后消失
 		</el-button>
+    <el-button type="primary" @click.native="showMessage">
+			显示消息
+		</el-button>
 		<p>
 			<el-select v-model="value">
 				<el-option v-for="item in options" :label="item.label" :value="item.value">
@@ -52,6 +55,13 @@
           }, (response) => {
           // error callback
         });
+      },
+      showMessage(){
+        //MessageBox.alert({title:'提示',message:'来自ELEMENT的消息提示窗口',type:'success'});
+        this.$msgbox({
+              type: 'success',
+              message: '来自ELEMENT的消息提示窗口'
+            });
       }
     }
   }
