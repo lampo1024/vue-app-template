@@ -116,7 +116,7 @@ export default {
 				item.selected = true;
 				this.addSelectedItem(item);
 			}
-			this.selectedItems.sortOn("value");
+			//this.selectedItems.sortOn("value");
 		},
 		addSelectedItem(item) {
 			if (!this.isExists(item, this.selectedItems)) {

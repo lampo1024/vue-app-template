@@ -1,31 +1,34 @@
 <template>
 <div>
-	<button @click="openModal">SHOW</button>
-	<modal :show="showModal" :checked-items="checkedItems" @close="closeModal"></modal>
+    <template v-for="field in fields">
+		<select-input @click="show(field.name)" class="btn btn-default" :field="formModel[field.name]" v-model="formModel[field.name]"></select-input>
+</template>
 </div>
 </template>
 <script>
 import Vue from 'vue';
-import Modal from '../components/modal.vue';
+import SelectInput from '../components/select-input.vue'
 
-Vue.component('modal',Modal);
-export default{
-	data(){
-		return {
-			showModal:false,
-			checkedItems:[1]
-		}
-	},
-	methods:{
-		openModal(){
-			this.showModal=true;
-			//console.info(this.show);
+export default {
+		components:{
+			SelectInput
 		},
-		closeModal(newSelectedItems){
-			this.showModal=!this.showModal;
-			console.info(newSelectedItems);
-			this.checkedItems=newSelectedItems;
-		}
-	}
+    data() {
+        return {
+            formModel: {
+                field1: '',
+                field2: ''
+            },
+            fields: [{
+                    name: 'field1'
+                },
+                {
+                    name: 'field2'
+                }
+            ]
+        }
+    },
+    methods: {
+    }
 }
 </script>
