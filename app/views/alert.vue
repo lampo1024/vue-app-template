@@ -1,7 +1,7 @@
 <template>
 <div>
     <template v-for="field in fields">
-		<select-input @click="show(field.name)" class="btn btn-default" :field="formModel[field.name]" v-model="formModel[field.name]"></select-input>
+		<select-input :formModel="formModel" :fieldName="field.name" v-model="formModel[field.name]"></select-input>
 </template>
 </div>
 </template>

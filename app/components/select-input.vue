@@ -1,5 +1,5 @@
 <template>
-  <input @click="show()" class="btn btn-default" v-model="innerField" readonly="readonly"></input>
+  <input @click="show()" class="input-select" readonly="readonly" :value="txt" />
 </template>
 <script>
 import Vue from 'vue';
@@ -22,7 +22,6 @@ function creat_new_modal(txt, deep) {
 								</div>
 								<div class="modal-body">
 									<input type="text" v-model="txt" />
-									<button @click="showNew">show new</button>
 								</div>
 								<div slot="modal-footer" class="modal-footer text-right">
 									<el-button size="small" class="modal-default-button" type="success" @click='submit()'>完成</el-button>
@@ -42,7 +41,7 @@ function creat_new_modal(txt, deep) {
                 submit: function() {
                     resolve(this.txt)
                     this.show = false;
-                    console.info(this.txt);
+                    //console.info(this.txt);
                 },
                 cancel: function() {
                     reject('cancel')
@@ -68,23 +67,25 @@ function creat_new_modal(txt, deep) {
 }
 
 export default {
-  props:{
-    field:[String]
-  },
-    data() {
-        return {
+    props: {
+        formModel: {
+            type: [Object,String],
+            twoWay: true
+        },
+        fieldName:{
+          type:String
         }
     },
-    computed:{
-      innerField(){
-        return this.field;
-      }
+    data() {
+        return {
+          parent:this.$parent
+        }
     },
     methods: {
         show: function() {
             var self = this;
-            creat_new_modal(self.innerField).then(function(value) {
-                self.field = value
+            creat_new_modal(self.formModel[self.fieldName]).then(function(value) {
+                self.parent.formModel[self.fieldName]=value;
             }, function(error) {
                 console.log(error)
             })
@@ -163,4 +164,6 @@ export default {
 .el-table .info-row {
     background: #c9e5f5;
 }
+.input-select{cursor: pointer;border-width: 1px;}
+input.input-select:hover{border-color:#c9e5f5;}
 </style>
