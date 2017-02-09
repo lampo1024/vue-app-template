@@ -18,7 +18,7 @@ function creat_new_modal(txt, deep) {
 						<div class="modal-mask" v-if="show" transition="modal">
 							<div class="modal-container">
 								<div class="modal-header">
-									<h3>deep:{{deep}}</h3>
+									<h3>请选择</h3>
 								</div>
 								<div class="modal-body">
 									<input type="text" v-model="txt" />
